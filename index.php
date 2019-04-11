@@ -62,6 +62,7 @@
             scoreAdd=0;
             var shakeEvent = new Shake({threshold: 15});
             shakeEvent.start();
+            $("score").text('......');
             window.addEventListener('shake', function()
                                                         {
                                                             scoreAdd=scoreAdd+Math.floor(Math.random() * 3) + 1; 
@@ -72,8 +73,8 @@
 
             var score = firebase.database().ref('score');
             score.on('value', function(snapshot) {
-                                                    var num=snapshot.val();
-                                                    $("score").text(num+'......');
+                                                    var num = snapshot.val();
+                                                    $("score").text('......');
                                                 }
                     );                                  
             function stopShake()
