@@ -89,6 +89,7 @@
                                                             alert('snapshot'); 
                                                         });
                 firebase.database().ref().set({
+                    alert('set...'); 
                     score: score_new
                 });
             }
