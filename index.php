@@ -73,7 +73,7 @@
             var score = firebase.database().ref('score');
             score.on('value', function(snapshot) {
                                                     var num = snapshot.val();
-                                                    alert("dfsdfdsfdf");
+                                                    alert(num);
                                                 }
                     );                                  
             function stopShake()
