@@ -89,7 +89,7 @@
                                                             alert(score_new); 
                                                         });
                 firebase.database().ref().set({
-                    score: scoreData
+                    score: score_new
                 });
             }
             function gameStart(){
