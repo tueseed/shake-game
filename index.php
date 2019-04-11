@@ -57,7 +57,6 @@
             };
         firebase.initializeApp(config);
         startGame=0;          
-
             //listen to shake event
             scoreAdd=0;
             var shakeEvent = new Shake({threshold: 15});
@@ -73,7 +72,7 @@
             var score = firebase.database().ref('score');
             score.on('value', function(snapshot) {
                                                     var num = snapshot.val();
-                                                    alert(num);
+                                                    document.getElementById('score').innerHTML = num;
                                                 }
                     );                                  
             function stopShake()
@@ -85,8 +84,10 @@
 
 
             function writeUserData(scoreData) {
+                var score_last = firebase.database().ref('score');
+                var score_new = parseInt(score_last) + parseInt(scoreData);
                 firebase.database().ref().set({
-                    score: scoreData
+                    score: score_new
                 });
             }
             function gameStart(){
