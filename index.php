@@ -84,7 +84,7 @@
 
 
             function writeUserData(scoreData) {
-                ref.once("value").then(function(snapshot) {
+                score.once("value").then(function(snapshot) {
                                                             var score_new = scoreData + snapshot.val();
                                                             alert('snapshot'); 
                                                         });
