@@ -60,7 +60,7 @@
             var shakeEvent = new Shake({threshold: 15});
             shakeEvent.start();
             window.addEventListener('shake', function(){
-                
+                    alert("Hey....");
                     scoreAdd=scoreAdd+Math.floor(Math.random() * 3) + 1;
                     
                     writeUserData(scoreAdd);
