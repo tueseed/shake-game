@@ -86,7 +86,7 @@
             function writeUserData(scoreData) {
                 score.once("value").then(function(snapshot) {
                                                             var score_new = scoreData + snapshot.val();
-                                                            alert('snapshot'); 
+                                                            alert(score_new); 
                                                         });
                 firebase.database().ref().set({
                     score: scoreData
