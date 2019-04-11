@@ -26,6 +26,9 @@
             <div class="row" style="margin-top:40px">
                 <div class="col-xs-10 col-xs-offset-1 text-center blueBG"><h1>LET's SHAKE</h1></div>
             </div>
+            <div class="row" style="margin-top:40px">
+                <div class="col-xs-10 col-xs-offset-1 text-center blueBG" id="score"><h1>คะแนน</h1></div>
+            </div>
             <div class="row" style="margin-top:20px">
                 <div class="col-xs-6 col-xs-offset-3" id="coinImg">
                     
@@ -59,19 +62,24 @@
             scoreAdd=0;
             var shakeEvent = new Shake({threshold: 15});
             shakeEvent.start();
-            window.addEventListener('shake', function(){
-                    alert("Hey....");
-                    scoreAdd=scoreAdd+Math.floor(Math.random() * 3) + 1;
-                    
-                    writeUserData(scoreAdd);
-                
-            }, false);
+            window.addEventListener('shake', function()
+                                                        {
+                                                            scoreAdd=scoreAdd+Math.floor(Math.random() * 3) + 1; 
+                                                            writeUserData(scoreAdd);
+                                                        }, 
+                                                        false
+                                    );
 
-            //stop listening
-            function stopShake(){
+            var score = firebase.database().ref('score/');
+            score.on('value', function(snapshot) {
+                                                    var num=snapshot.val();
+                                                    $("score").html(num);
+                                                }
+                    );                                  
+            function stopShake()
+            {
                 shakeEvent.stop();
             }
-
             //check if shake is supported or not.
             if(!("ondevicemotion" in window)){alert("Not Supported");}
 
