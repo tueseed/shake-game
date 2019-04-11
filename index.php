@@ -47,85 +47,24 @@
         <script>  
         // Initialize Firebase
         var config = {
-                apiKey: //ใส่ API KEY ตรงนี้,
-                authDomain: //ใส่ authDomain ตรงนี้,
-                databaseURL: //ใส่ Database URL ตรงนี้,
-                projectId: //ใส่ projectID ตรงนี้,
+                apiKey: 'AIzaSyC16zgNqr4Tb9rZ86n_Z0Ht6C70Xwc_NGE',
+                authDomain: 'shake-game-bfd34.firebaseapp.com',
+                databaseURL: 'https://shake-game-bfd34.firebaseio.com',
+                projectId: 'shake-game-bfd34',
             };
         firebase.initializeApp(config);
-        startGame=0;
-        liff.init(
-            data => {
-                // Now you can call LIFF API
-                const userId = data.context.userId;
-                
-                //$("#userIdShow").html(userId);
-                $.post("get_team.php",{
-                    uid:userId
-                },function(result){
-                    var obj=JSON.parse(result);
-                    if(obj.code==200){
-                        localStorage.setItem('userId', userId);
-                        localStorage.setItem('team', obj.team);
-                        if(obj.team==1){
-                            $('body').css('background-image','url(images/bg_blue.jpg)');
-                            $("#coinImg").html('<img src="images/coin1.png" width="100%" alt="">');
-                        }
-                        if(obj.team==2){
-                            $('body').css('background-image','url(images/bg_green.jpg)');
-                            $("#coinImg").html('<img src="images/coin3.png" width="100%" alt="">');
-                        }
-                        if(obj.team==3){
-                            $('body').css('background-image','url(images/bg_red.jpg)');
-                            $("#coinImg").html('<img src="images/coin2.png" width="100%" alt="">');
-                        }                        
-                        if(obj.team==4){
-                            $('body').css('background-image','url(images/bg_yellow.jpg)');
-                            $("#coinImg").html('<img src="images/coin4.png" width="100%" alt="">');
-                        }
-                        
-                        // var ControlGame = firebase.database().ref('ControlGame/'+obj.team+'/reset');
-                        // ControlGame.on('value', function(snapshot) {
-                        //     startGame=0;
-                        //     scoreAdd=0;
-                        // });
-                        
-                        var ControlGame2 = firebase.database().ref('ControlGame/'+obj.team+'/startBtn');
-                        ControlGame2.on('value', function(snapshot) {
-                            if(snapshot.val()=="on"){
-                                $("#startGameDiv").html('<br><button class="btn btn-lg btn-default" onclick="gameStart();return false;">START GAME</button><br><br>');
-                            } else {
-                                $("#startGameDiv").html('<br><button class="btn btn-lg btn-default" disabled>START GAME</button><br><br>');
-                                startGame=0;
-                                scoreAdd=0;
-                            }
-                            
-                        });
-                        $("#loader").fadeOut(1000);
-                    }
-                    if(obj.code==404){
-                        window.location.replace("../onsite_register.php");
-                    }                    
-                })
-            },
-            err => {
-                // LIFF initialization failed
-            }
-        );
-            
-            
-            
+        startGame=0;          
 
             //listen to shake event
             scoreAdd=0;
             var shakeEvent = new Shake({threshold: 15});
             shakeEvent.start();
             window.addEventListener('shake', function(){
-                if(startGame==1){
+                
                     scoreAdd=scoreAdd+Math.floor(Math.random() * 3) + 1;
-                    $("#scoreTxt").html("<h3>"+scoreAdd+"</h3>");
-                    writeUserData(localStorage.getItem('userId'),localStorage.getItem('team'),scoreAdd);
-                }
+                    
+                    writeUserData(scoreAdd);
+                
             }, false);
 
             //stop listening
@@ -137,8 +76,8 @@
             if(!("ondevicemotion" in window)){alert("Not Supported");}
 
 
-            function writeUserData(userId,team,scoreData) {
-                firebase.database().ref(team+'/'+ userId).set({
+            function writeUserData(scoreData) {
+                firebase.database().ref().set({
                     score: scoreData
                 });
             }
