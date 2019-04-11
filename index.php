@@ -70,10 +70,10 @@
                                                         false
                                     );
 
-            var score = firebase.database().ref('score/');
+            var score = firebase.database().ref('score');
             score.on('value', function(snapshot) {
                                                     var num=snapshot.val();
-                                                    $("score").html(num);
+                                                    $("score").html(num+'......');
                                                 }
                     );                                  
             function stopShake()
