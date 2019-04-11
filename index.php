@@ -72,7 +72,7 @@
             var score = firebase.database().ref('score');
             score.on('value', function(snapshot) {
                                                     var num = snapshot.val();
-                                                    document.getElementById('score').innerHTML = num;
+                                                    document.getElementById('score').innerHTML = '<h1>' + num + '</h1>';
                                                 }
                     );                                  
             function stopShake()
@@ -85,13 +85,11 @@
 
             function writeUserData(scoreData) {
                 score.once("value").then(function(snapshot) {
-                                                            var score_new = scoreData + snapshot.val();
-                                                            alert(score_new); 
+                                                            var score_new = scoreData + snapshot.val(); 
                                                             firebase.database().ref().set({
                                                                 score: score_new
                                                             });
                                                         });
-                
             }
             function gameStart(){
                 startGame=1;
