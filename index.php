@@ -57,9 +57,7 @@
             };
         firebase.initializeApp(config);
         startGame=0;          
-            //listen to shake event
-            scoreAdd=0;
-            var shakeEvent = new Shake({threshold: 15});
+            ///////////เชคสถานะ เริ่มเกมส์ หรือหยุด////////////////
             var control = firebase.database().ref('control');
             control.on('value', function(snapshot) {
                                                     var control = snapshot.val();
@@ -74,7 +72,16 @@
                                                     
                                                 }
                     );
-
+            /////////////แสดงผลคะแนน///////////
+            var score = firebase.database().ref('score');
+            score.on('value', function(snapshot) {
+                                                    var num = snapshot.val();
+                                                    document.getElementById('score').innerHTML = '<h1>' + num + '</h1>';
+                                                }
+                    );
+            //จับการเขย่า
+            scoreAdd=0;
+            var shakeEvent = new Shake({threshold: 15});
             shakeEvent.start();
             window.addEventListener('shake', function()
                                                         {
@@ -94,14 +101,7 @@
                                                                                       );  
                                                         }, 
                                                         false
-                                    );
-
-            var score = firebase.database().ref('score');
-            score.on('value', function(snapshot) {
-                                                    var num = snapshot.val();
-                                                    document.getElementById('score').innerHTML = '<h1>' + num + '</h1>';
-                                                }
-                    );                                  
+                                    );                                  
             function stopShake()
             {
                 shakeEvent.stop();
@@ -115,10 +115,6 @@
                                                             var score_new = scoreData + snapshot.val(); 
                                                             firebase.database().ref('score').set(score_new);
                                                         });
-            }
-            function gameStart(){
-                startGame=1;
-                $("#startGameDiv").html("<h4>Your Score</h4><div id='scoreTxt'><h3>Start SHAKE NOW!!!!</h3></div>");
             }
         </script>
     </body>
