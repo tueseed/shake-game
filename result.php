@@ -95,10 +95,12 @@
                                                         if(snapshot.val() =='on')
                                                         {
                                                             document.getElementById('btn_str').setAttribute("value","หยุด");
+                                                            console.log('on');
                                                         }
                                                         else if(snapshot.val() == 'off')
                                                         {
                                                             document.getElementById('btn_str').setAttribute("value","เริ่มเกมส์");
+                                                            console.log('on');
                                                         }
                                                     }
                         );
