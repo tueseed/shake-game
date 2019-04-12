@@ -50,12 +50,12 @@
                                                     if(status == 'off')
                                                     {
                                                         document.getElementById('btn_str').setAttribute("value","เริ่มเกมส์");
-                                                        break;
+                                                        //break;
                                                     }
                                                     else if(status == 'on')
                                                     {
                                                         document.getElementById('btn_str').setAttribute("value","หยุด");
-                                                        break;
+                                                       // break;
                                                     }
                                                 }
                     );                          
