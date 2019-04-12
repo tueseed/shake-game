@@ -66,12 +66,10 @@
                                                 if(snapshot.val() =='on')
                                                 {
                                                     firebase.database().ref('control').set('off');
-                                                    document.getElementById('btn_str').setAttribute("value","เริ่มเกมส์");
                                                 }
                                                 else if (snapshot.val() == 'off')
                                                 {
-                                                    firebase.database().ref('control').set('on');
-                                                        document.getElementById('btn_str').setAttribute("value","หยุด");
+                                                    firebase.database().ref('control').set('on');    
                                                 }
                                             }
                                          );                           
@@ -92,6 +90,19 @@
                                                     document.getElementById('progressbar').setAttribute("style","width:" + percent + "%");
                                                 }
                     );
+
+            var control_chk = firebase.database().ref('control');
+            control_ckh.on('value',function(snapshot){
+                                                        if(snapshot.val() =='on')
+                                                        {
+                                                            document.getElementById('btn_str').setAttribute("value","หยุด");
+                                                        }
+                                                        else if(snapshot.val() == 'off')
+                                                        {
+                                                            document.getElementById('btn_str').setAttribute("value","เริ่มเกมส์");
+                                                        }
+                                                    }
+                        );
             
 
             
