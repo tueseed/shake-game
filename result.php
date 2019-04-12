@@ -57,6 +57,7 @@
                 projectId: 'shake-game-bfd34',
             };
             firebase.initializeApp(config);
+
             var control = firebase.database().ref('control');
             control.on('value',function(snapshot){
                                                         if(snapshot.val() =='on')
@@ -71,6 +72,16 @@
                                                         }
                                                     }
                         );
+
+            var score = firebase.database().ref('score');
+            score.on('value', function(snapshot) {
+                                                    var num = snapshot.val();
+                                                    var percent = (num / 1000) * 100;
+                                                    document.getElementById('progressbar').innerHTML = num ;
+                                                    document.getElementById('progressbar').setAttribute("style","width:" + percent + "%");
+                                                }
+                    );
+
             function control()
             {
                 control.once("value").then(
@@ -92,17 +103,6 @@
             {
                 firebase.database().ref('score').set(0);                          
             }
-
-
-
-            var score = firebase.database().ref('score');
-            score.on('value', function(snapshot) {
-                                                    var num = snapshot.val();
-                                                    var percent = (num / 1000) * 100;
-                                                    document.getElementById('progressbar').innerHTML = num ;
-                                                    document.getElementById('progressbar').setAttribute("style","width:" + percent + "%");
-                                                }
-                    );
         </script>
     </body>
 </html>
