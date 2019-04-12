@@ -73,7 +73,7 @@
             score.on('value', function(snapshot) {
                                                     var num = snapshot.val();
                                                     var percent = (num / 1000) * 100;
-                                                    document.getElementById('progressbar').innerHTML = '<h1>' + num + '</h1>';
+                                                    document.getElementById('progressbar').innerHTML = num ;
                                                     document.getElementById('progressbar').setAttribute("style","width:" + percent + "%");
                                                 }
                     );
