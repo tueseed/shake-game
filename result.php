@@ -28,8 +28,8 @@
             </div>
             <div class="row" style="margin-top:20px">
                 <div class="col-lg-12 text-center">
-                    <div class="progress">
-                        <div class="progress-bar bg-info progress-bar-striped" id="progressbar" style="width:0%"></div>
+                    <div class="progress" style="height:100px">
+                        <div class="progress-bar bg-info progress-bar-striped" id="progressbar" style="width:0%;height:100px"></div>
                     </div>
                 </div>
             </div>
@@ -88,8 +88,8 @@
             score.on('value', function(snapshot) {
                                                     var num = snapshot.val();
                                                     var percent = (num / 1000) * 100;
-                                                    document.getElementById('progressbar').innerHTML = num ;
-                                                    document.getElementById('progressbar').setAttribute("style","width:" + percent + "%");
+                                                    document.getElementById('progressbar').innerHTML = 'h1' + num + '</h1>' ;
+                                                    document.getElementById('progressbar').setAttribute("style","width:" + percent + "%;height:100px");
                                                 }
                     );
             
