@@ -58,8 +58,8 @@
             };
             firebase.initializeApp(config);
 
-            
-            control.on('value',function(snapshot){
+            var control_chk = firebase.database().ref('control');
+            control_chk.on('value',function(snapshot){
                                                         if(snapshot.val() =='on')
                                                         {
                                                             document.getElementById('btn_str').setAttribute("value","หยุด");
