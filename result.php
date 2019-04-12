@@ -91,8 +91,7 @@
                                                 }
                     );
 
-            var control_chk = firebase.database().ref('control');
-            control_ckh.on('value',function(snapshot){
+            control.on('value',function(snapshot){
                                                         if(snapshot.val() =='on')
                                                         {
                                                             document.getElementById('btn_str').setAttribute("value","หยุด");
