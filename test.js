@@ -1,2 +1,2 @@
-document.getElementById('score').innerHTML = "";
+document.getElementById('score').setAttribute = "";
 parseInt();

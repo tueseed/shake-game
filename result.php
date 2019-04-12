@@ -23,7 +23,7 @@
         <div class="container-fluid bg4">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <input type="button" class="btn btn-success" onclick="control()" value="เริ่มเกมส์">
+                    <input type="button" class="btn btn-success" onclick="control()" id="btn_str" value="เริ่มเกมส์">
                 </div>
             </div>
         </div>
@@ -49,11 +49,13 @@
                                                     var status = snapshot.val();
                                                     if(status == 'off')
                                                     {
-                                                        firebase.database().ref('control').set('on');
+                                                        document.getElementById('btn_str').setAttribute("value","เริ่มเกมส์");
+                                                        break;
                                                     }
                                                     else if(status == 'on')
                                                     {
-                                                        firebase.database().ref('control').set('off');
+                                                        document.getElementById('btn_str').setAttribute("value","หยุด");
+                                                        break;
                                                     }
                                                 }
                     );                          
