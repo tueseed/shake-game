@@ -78,16 +78,20 @@
             shakeEvent.start();
             window.addEventListener('shake', function()
                                                         {
-                                                            if(control =='on')
-                                                            {
-                                                                scoreAdd=scoreAdd+Math.floor(Math.random() * 3) + 1; 
-                                                                writeUserData(scoreAdd);
-                                                            }
-                                                            else if (control == 'off')
-                                                            {
-                                                                alert('เดี่ยวสิ..รอก่อนเกมส์ยังไม่เริ่ม');
-                                                            }
-                                                            
+                                                            control.once("value").then(
+                                                                                        function(snapshot) 
+                                                                                        {
+                                                                                            if(snapshot.val() =='on')
+                                                                                            {
+                                                                                                scoreAdd=scoreAdd+Math.floor(Math.random() * 3) + 1; 
+                                                                                                writeUserData(scoreAdd);
+                                                                                            }
+                                                                                            else if (snapshot.val() == 'off')
+                                                                                            {
+                                                                                                alert('เดี่ยวสิ..รอก่อนเกมส์ยังไม่เริ่ม');
+                                                                                            }
+                                                                                        }
+                                                                                      );  
                                                         }, 
                                                         false
                                     );
