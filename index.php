@@ -24,7 +24,7 @@
             </div> -->
         <div class="container">
             <div class="row" style="margin-top:40px">
-                <div class="col-xs-10 col-xs-offset-1 text-center blueBG"><h1>LET's SHAKE</h1></div>
+                <div class="col-xs-10 col-xs-offset-1 text-center blueBG" id="game"><h1>LET's SHAKE</h1></div>
             </div>
             <div class="row" style="margin-top:40px">
                 <div class="col-xs-10 col-xs-offset-1 text-center blueBG" id="score"><h1>คะแนน</h1></div>
@@ -60,6 +60,21 @@
             //listen to shake event
             scoreAdd=0;
             var shakeEvent = new Shake({threshold: 15});
+            var control = firebase.database().ref('control');
+            control.on('value', function(snapshot) {
+                                                    var control = snapshot.val();
+                                                    if(control == 'on')
+                                                    {
+                                                        document.getElementById('game').innerHTML = "<h1>LET's SHAKE</h1>";
+                                                    }
+                                                    else if(control == 'off')
+                                                    {
+                                                        document.getElementById('game').innerHTML = "<h1>Waiting....</h1>"; 
+                                                    }
+                                                    
+                                                }
+                    );
+
             shakeEvent.start();
             window.addEventListener('shake', function()
                                                         {
