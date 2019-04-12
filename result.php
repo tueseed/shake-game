@@ -28,9 +28,14 @@
             </div>
             <div class="row" style="margin-top:20px">
                 <div class="col-lg-12 text-center">
-                <div class="progress">
-                    <div class="progress-bar bg-info progress-bar-striped" id="progressbar" style="width:0%"></div>
+                    <div class="progress">
+                        <div class="progress-bar bg-info progress-bar-striped" id="progressbar" style="width:0%"></div>
+                    </div>
                 </div>
+            </div>
+            <div class="row" style="margin-top:20px">
+                <div class="col-lg-12 text-center">
+                    <input type="button" class="btn btn-success" onclick="reset_score()" id="btn_rst" value="Reset">
                 </div>
             </div>
         </div>
@@ -68,6 +73,13 @@
                                             }
                                          );                           
             }
+
+            function reset_score()
+            {
+                firebase.database().ref('score').set(0);                          
+            }
+
+
 
             var score = firebase.database().ref('score');
             score.on('value', function(snapshot) {
