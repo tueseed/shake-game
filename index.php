@@ -78,12 +78,12 @@
             shakeEvent.start();
             window.addEventListener('shake', function()
                                                         {
-                                                            if(control ='on')
+                                                            if(control =='on')
                                                             {
                                                                 scoreAdd=scoreAdd+Math.floor(Math.random() * 3) + 1; 
                                                                 writeUserData(scoreAdd);
                                                             }
-                                                            else if (control = 'off')
+                                                            else if (control == 'off')
                                                             {
                                                                 alert('เดี่ยวสิ..รอก่อนเกมส์ยังไม่เริ่ม');
                                                             }
