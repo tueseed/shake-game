@@ -57,9 +57,22 @@
                 projectId: 'shake-game-bfd34',
             };
             firebase.initializeApp(config);
+            var control = firebase.database().ref('control');
+            control.on('value',function(snapshot){
+                                                        if(snapshot.val() =='on')
+                                                        {
+                                                            document.getElementById('btn_str').setAttribute("value","หยุด");
+                                                            console.log('on');
+                                                        }
+                                                        else if(snapshot.val() == 'off')
+                                                        {
+                                                            document.getElementById('btn_str').setAttribute("value","เริ่มเกมส์");
+                                                            console.log('on');
+                                                        }
+                                                    }
+                        );
             function control()
             {
-                var control = firebase.database().ref('control');
                 control.once("value").then(
                                             function(snapshot) 
                                             {
@@ -90,29 +103,6 @@
                                                     document.getElementById('progressbar').setAttribute("style","width:" + percent + "%");
                                                 }
                     );
-
-            control.on('value',function(snapshot){
-                                                        if(snapshot.val() =='on')
-                                                        {
-                                                            document.getElementById('btn_str').setAttribute("value","หยุด");
-                                                            console.log('on');
-                                                        }
-                                                        else if(snapshot.val() == 'off')
-                                                        {
-                                                            document.getElementById('btn_str').setAttribute("value","เริ่มเกมส์");
-                                                            console.log('on');
-                                                        }
-                                                    }
-                        );
-            
-
-            
-
-           
-
-            
-
-           
         </script>
     </body>
 </html>
