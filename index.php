@@ -29,16 +29,6 @@
             <div class="row" style="margin-top:40px">
                 <div class="col-xs-10 col-xs-offset-1 text-center blueBG" id="score"><h1>คะแนน</h1></div>
             </div>
-            <div class="row" style="margin-top:20px">
-                <div class="col-xs-6 col-xs-offset-3" id="coinImg">
-                    
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 blueBG text-center" id="startGameDiv">
-                    <!-- <br><button class="btn btn-lg btn-default" onclick="gameStart();return false;">START GAME</button><br><br> -->
-                </div>
-            </div>
         </div>
         <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -21,12 +21,12 @@
     </head>
     <body>
         <div class="container-fluid bg4">
-            <div class="row mt-5">
+            <div class="row" style="margin-top:20px">
                 <div class="col-lg-12 text-center">
                     <input type="button" class="btn btn-success" onclick="control()" id="btn_str" value="เริ่มเกมส์">
                 </div>
             </div>
-            <div class="row mt-5">
+            <div class="row" style="margin-top:20px">
                 <div class="col-lg-12 text-center">
                 <div class="progress">
                     <div class="progress-bar bg-info progress-bar-striped" id="progressbar" style="width:0%"></div>
