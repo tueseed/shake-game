@@ -88,10 +88,26 @@
             score.on('value', function(snapshot) {
                                                     var num = snapshot.val();
                                                     var percent = (num / 1000) * 100;
-                                                    document.getElementById('progressbar').innerHTML = 'h1' + num + '</h1>' ;
+                                                    document.getElementById('progressbar').innerHTML = '<h1>'' + num + '</h1>' ;
                                                     document.getElementById('progressbar').setAttribute("style","width:" + percent + "%;height:100px");
                                                 }
                     );
+            var control = firebase.database().ref('control');
+            control.once("value").then(
+                                            function(snapshot) 
+                                            {
+                                                if(snapshot.val() =='on')
+                                                {
+                                                    
+                                                    document.getElementById('btn_str').setAttribute("value","หยุด");
+                                                }
+                                                else if (snapshot.val() == 'off')
+                                                {
+                                                    
+                                                        document.getElementById('btn_str').setAttribute("value","เริ่มเกมส์");
+                                                }
+                                            }
+                                         ); 
             
 
             
