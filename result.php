@@ -49,13 +49,15 @@
                                                     var status = snapshot.val();
                                                     if(status == 'off')
                                                     {
+                                                        firebase.database().ref('control').set('on');
                                                         document.getElementById('btn_str').setAttribute("value","เริ่มเกมส์");
                                                         //break;
                                                     }
                                                     else if(status == 'on')
                                                     {
+                                                        firebase.database().ref('control').set('off');
                                                         document.getElementById('btn_str').setAttribute("value","หยุด");
-                                                       // break;
+                                                        //break;
                                                     }
                                                 }
                     );                          
