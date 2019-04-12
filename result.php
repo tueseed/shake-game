@@ -58,7 +58,7 @@
             };
             firebase.initializeApp(config);
 
-            var control = firebase.database().ref('control');
+            
             control.on('value',function(snapshot){
                                                         if(snapshot.val() =='on')
                                                         {
@@ -84,6 +84,7 @@
 
             function control()
             {
+                var control = firebase.database().ref('control');
                 control.once("value").then(
                                             function(snapshot) 
                                             {
