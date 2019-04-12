@@ -86,9 +86,7 @@
             function writeUserData(scoreData) {
                 score.once("value").then(function(snapshot) {
                                                             var score_new = scoreData + snapshot.val(); 
-                                                            firebase.database().ref().set({
-                                                                score: score_new
-                                                            });
+                                                            firebase.database().ref('score').set(score_new);
                                                         });
             }
             function gameStart(){
