@@ -44,23 +44,22 @@
             firebase.initializeApp(config);
             function control()
             {
-                var score = firebase.database().ref('control');
-                score.on('value', function(snapshot) {
-                                                    var status = snapshot.val();
-                                                    if(status == 'off')
-                                                    {
-                                                        firebase.database().ref('control').set('on');
-                                                        document.getElementById('btn_str').setAttribute("value","เริ่มเกมส์");
-                                                        
-                                                    }
-                                                    else if(status == 'on')
-                                                    {
-                                                        firebase.database().ref('control').set('off');
-                                                        document.getElementById('btn_str').setAttribute("value","หยุด");
-                                                    
-                                                    }
+                var control = firebase.database().ref('control');
+                control.once("value").then(
+                                            function(snapshot) 
+                                            {
+                                                if(snapshot.val() =='on')
+                                                {
+                                                    firebase.database().ref('control').set('off');
+                                                    document.getElementById('btn_str').setAttribute("value","เริ่มเกมส์");
                                                 }
-                    );                          
+                                                else if (snapshot.val() == 'off')
+                                                {
+                                                    firebase.database().ref('control').set('on');
+                                                        document.getElementById('btn_str').setAttribute("value","หยุด");
+                                                }
+                                            }
+                                         );                           
             }
             
 
